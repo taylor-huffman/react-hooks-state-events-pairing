@@ -45,7 +45,7 @@ function App() {
   })
 
   return (
-    <div className="App" style={{ maxWidth: "1000px", marginLeft: "auto", marginRight: "auto" }}>
+    <div className="App" style={{ maxWidth: "1000px", marginLeft: "auto", marginRight: "auto", padding: "30px" }}>
       <VideoSection video={video} upCount={upCount} downCount={downCount} setUpCount={setUpCount} setDownCount={setDownCount} />
       <CommentsSection comments={commentDisplay} commentsVisible={commentsVisible} handleComments={handleComments} handleSearch={handleSearch} handleDeleteComment={handleDeleteComment} handleSort={handleSort} />
     </div>
