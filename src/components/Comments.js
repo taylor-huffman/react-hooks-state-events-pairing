@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Comments({ userName, userComment }) {
+function Comments({ userName, userComment, handleDeleteComment }) {
     
     const [commentUpCount, setCommentUpCount] = useState(0)
     const [commentDownCount, setCommentDownCount] = useState(0)
@@ -20,7 +20,7 @@ function Comments({ userName, userComment }) {
             <button onClick={handleCommentUpVotes}>{commentUpCount}👍</button>
             <button onClick={handleCommentDownVotes}>{commentDownCount}👎</button>
             <div>
-                <button>Remove Comment</button>
+                <button value={userName} onClick={handleDeleteComment}>Remove Comment</button>
             </div>
         </div>
     )

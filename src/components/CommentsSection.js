@@ -1,8 +1,7 @@
 import React from "react";
 import Comments from "./Comments"
 
-function CommentsSection({ comments, commentsVisible, handleComments, handleSearch }) {
-    
+function CommentsSection({ comments, commentsVisible, handleComments, handleSearch, handleDeleteComment }) {
 
     return (
         <div className="comments-section" style={{ marginTop: "20px" }}>
@@ -12,7 +11,7 @@ function CommentsSection({ comments, commentsVisible, handleComments, handleSear
             <div /*style={{ display: commentsVisible ? "block" : "none" }}*/>
                 <h2>{commentsVisible ? comments.length + ' Comments' : 'Comments Hidden'}</h2>
                 {comments.map(comment => {
-                    return <Comments key={comment.id} userName={comment.user} userComment={comment.comment} />
+                    return <Comments key={comment.id} userName={comment.user} userComment={comment.comment} handleDeleteComment={handleDeleteComment} />
                 })}
             </div>
         </div>

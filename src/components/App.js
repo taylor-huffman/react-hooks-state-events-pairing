@@ -9,6 +9,7 @@ function App() {
   const [downCount, setDownCount] = useState(video.downvotes)
   const [commentsVisible, setCommentsVisible] = useState(true)
   const [commentSearch, setCommentSearch] = useState('')
+  const [comments, setComments] = useState(video.comments)
 
   function handleComments() {
       setCommentsVisible(commentsVisible => !commentsVisible)
@@ -18,7 +19,13 @@ function App() {
     setCommentSearch(event.target.value)
   }
 
-  const commentDisplay = video.comments.filter(() => {
+  function handleDeleteComment(event) {
+    setComments(comments => comments.filter(comment => {
+      return comment.user !== event.target.value
+    }))
+}
+
+  const commentDisplay = comments.filter(() => {
     if (commentsVisible === true) return true
     return null
   }).filter(comment => {
@@ -29,7 +36,7 @@ function App() {
   return (
     <div className="App" style={{ maxWidth: "1000px", marginLeft: "auto", marginRight: "auto" }}>
       <VideoSection video={video} upCount={upCount} downCount={downCount} setUpCount={setUpCount} setDownCount={setDownCount} />
-      <CommentsSection comments={commentDisplay} commentsVisible={commentsVisible} handleComments={handleComments} handleSearch={handleSearch}/>
+      <CommentsSection comments={commentDisplay} commentsVisible={commentsVisible} handleComments={handleComments} handleSearch={handleSearch} handleDeleteComment={handleDeleteComment} />
     </div>
   );
 }
