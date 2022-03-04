@@ -23,7 +23,18 @@ function App() {
     setComments(comments => comments.filter(comment => {
       return comment.user !== event.target.value
     }))
-}
+  }
+
+  function handleSort() {
+    setComments(comments => comments.sort((a,b) => {
+      let userA = a.user.toUpperCase()
+      let userB = b.user.toUpperCase()
+      if (userA < userB) return -1
+      if (userA > userB) return 1
+      return 0
+    }).map(comment => comment))
+  }
+
 
   const commentDisplay = comments.filter(() => {
     if (commentsVisible === true) return true
@@ -36,7 +47,7 @@ function App() {
   return (
     <div className="App" style={{ maxWidth: "1000px", marginLeft: "auto", marginRight: "auto" }}>
       <VideoSection video={video} upCount={upCount} downCount={downCount} setUpCount={setUpCount} setDownCount={setDownCount} />
-      <CommentsSection comments={commentDisplay} commentsVisible={commentsVisible} handleComments={handleComments} handleSearch={handleSearch} handleDeleteComment={handleDeleteComment} />
+      <CommentsSection comments={commentDisplay} commentsVisible={commentsVisible} handleComments={handleComments} handleSearch={handleSearch} handleDeleteComment={handleDeleteComment} handleSort={handleSort} />
     </div>
   );
 }
