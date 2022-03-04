@@ -1,6 +1,15 @@
 import React from "react";
 
-function VideoSection({ video }) {
+function VideoSection({ video, upCount, downCount, setUpCount, setDownCount }) {
+
+    function handleUpVotes() {
+        setUpCount(count => count + 1)
+    }
+
+    function handleDownVotes() {
+        setDownCount(count => count + 1)
+    }
+
     return (
         <div className="video-section">
             <iframe
@@ -13,8 +22,8 @@ function VideoSection({ video }) {
             />
             <h1>{video.title}</h1>
             <p>{video.views} Views | Uploaded {video.createdAt}</p>
-            <button>{video.upvotes}👍</button>
-            <button>{video.downvotes}👎</button>
+            <button onClick={handleUpVotes}>{upCount}👍</button>
+            <button onClick={handleDownVotes}>{downCount}👎</button>
         </div>
     )
 }
